@@ -146,7 +146,7 @@ header {
 .tab-btn:hover {
   color: var(--light-blue);
   background: rgba(78, 164, 204, 0.08);
-  }
+}
 
 /* the active tab gets a blue underline and full white text */
 .tab-btn.active {

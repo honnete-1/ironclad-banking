@@ -376,3 +376,116 @@
       </div>
 
     </section>
+
+    <!-- SECTION 5: SECURITY SYSTEM
+         part A is validateBankPassword() — checks 3 string rules
+         part B is generateYearlyReport() — loop with leap year and FizzBuzz logic -->
+    <section id="section-security" class="section" aria-label="Security System">
+
+      <div class="section-header">
+        <div class="section-title">SECURITY SYSTEM</div>
+        <div class="section-desc">validateBankPassword() · generateYearlyReport() · string methods · loops</div>
+      </div>
+
+      <div class="two-col">
+
+        <!-- left: the password validator (Part A) -->
+        <div>
+          <div class="card">
+            <div class="card-head">🔐 PASSWORD VALIDATOR</div>
+
+            <!-- password input with a show/hide toggle button inside it -->
+            <div class="field">
+              <label for="pwInput">Enter Bank Password</label>
+              <div class="pw-wrap">
+                <!-- oninput fires livePasswordCheck() on every keystroke
+                     so the checklist and strength bar update in real time -->
+                <input type="password" id="pwInput" placeholder="Type a password..." oninput="livePasswordCheck()">
+                <button class="pw-toggle" onclick="togglePwView()" id="pwToggleBtn">SHOW</button>
+              </div>
+            </div>
+
+            <!-- strength bar, width and color change as you type -->
+            <div class="strength-track">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <div class="strength-label" id="strengthLabel">Enter a password to see strength</div>
+
+            <!-- live checklist showing the 3 requirements from the assignment -->
+            <div class="req-list">
+              <div class="req-list-title">Requirements</div>
+              <div class="req-item" id="req-length">◯  At least 8 characters</div>
+              <div class="req-item" id="req-nopass">◯  Does not contain the word "password"</div>
+              <div class="req-item" id="req-vowel">◯  Contains at least one vowel (a, e, i, o, u)</div>
+            </div>
+
+            <div class="err-msg" id="pwError">error placeholder</div>
+
+            <button class="btn btn-primary" onclick="validatePassword()" style="width:100%; justify-content:center; padding: 0.72rem;">
+              VALIDATE PASSWORD
+            </button>
+
+            <!-- access granted or denied result, hidden until validate is clicked -->
+            <div id="accessResult" class="access-result"></div>
+          </div>
+        </div>
+
+        <!-- right: the yearly report generator (Part B) -->
+        <div>
+          <div class="card">
+            <div class="card-head">📅 YEARLY REPORT GENERATOR</div>
+
+            <!-- little info banner explaining the bank anniversary context -->
+            <div style="background: rgba(78,164,204,0.1); border-radius: 6px; padding: 0.65rem 0.85rem; font-size: 0.78rem; color: var(--deep-blue); margin-bottom: 1rem;">
+              IronClad Bank founded: <strong style="color: var(--light-blue);">Year 2000</strong>
+              &nbsp;·&nbsp; Anniversaries every <strong>5 years</strong>
+            </div>
+
+            <!-- start and end year inputs side by side -->
+            <div class="two-col" style="gap: 0.75rem;">
+              <div class="field">
+                <label for="startYear">Start Year</label>
+                <input type="number" id="startYear" placeholder="e.g. 2000" value="2000">
+              </div>
+              <div class="field">
+                <label for="endYear">End Year</label>
+                <input type="number" id="endYear" placeholder="e.g. 2030" value="2030">
+              </div>
+            </div>
+
+            <div class="err-msg" id="reportError">error placeholder</div>
+
+            <button class="btn btn-primary" onclick="generateReport()" style="width:100%; justify-content:center; margin-bottom:0.85rem;">
+              GENERATE REPORT
+            </button>
+
+            <!-- color legend so you know what amber and blue mean -->
+            <div style="display:flex; gap:1rem; font-size:0.72rem; color:var(--mid-blue); margin-bottom:0.75rem; font-family: var(--font-mono);">
+              <span><span style="color:var(--amber);">■</span> Leap Year</span>
+              <span><span style="color:var(--light-blue);">■</span> Anniversary</span>
+              <span><span style="color:var(--mid-blue);">■</span> Normal Year</span>
+            </div>
+
+            <!-- scrollable report output, rows injected by generateReport() in JS -->
+            <div class="report-scroll" id="reportPanel">
+              <div style="color:var(--mid-blue); text-align:center; padding:1.5rem 0; font-size:0.8rem; font-style:italic;">
+                Enter a year range and click Generate Report
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    IRONCLAD BANKING SYSTEM &nbsp;·&nbsp; CS101 ARRAY METHODS PROJECT &nbsp;·&nbsp; VANILLA JS ONLY
+  </footer>
+
+  <!-- main.js goes at the bottom so all the HTML is loaded before the script runs -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -29,3 +29,27 @@
       <div class="header-badge">CS101 · ARRAY METHODS PROJECT</div>
     </div>
   </header>
+
+  <!-- tab navigation, one button per question
+       switchTab() in main.js handles the show/hide logic -->
+  <nav class="tab-nav" role="navigation" aria-label="Section tabs">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('atm')" aria-pressed="true">
+        <span class="tab-num">1</span> Smart ATM
+      </button>
+      <button class="tab-btn" onclick="switchTab('loan')">
+        <span class="tab-num">2</span> Loan Processing
+      </button>
+      <button class="tab-btn" onclick="switchTab('fraud')">
+        <span class="tab-num">3</span> Fraud Detection
+      </button>
+      <button class="tab-btn" onclick="switchTab('merger')">
+        <span class="tab-num">4</span> Bank Merger
+      </button>
+      <button class="tab-btn" onclick="switchTab('security')">
+        <span class="tab-num">5</span> Security System
+      </button>
+    </div>
+  </nav>
+
+  <main>

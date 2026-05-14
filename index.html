@@ -136,3 +136,243 @@
 
       </div>
     </section>
+
+      <!-- SECTION 2: LOAN PROCESSING
+         covers filter(), map(), reduce(), some(), every(), find(), findIndex()
+         no for or while loops allowed — all iteration uses array methods -->
+    <section id="section-loan" class="section" aria-label="Loan Processing">
+
+      <div class="section-header">
+        <div class="section-title">LOAN PROCESSING ENGINE</div>
+        <div class="section-desc">Methods: .filter() · .map() · .reduce() · .some() · .every() · .find() · .findIndex()</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">📊 CREDIT SCORE INPUT</div>
+        <div class="two-col">
+          <div>
+            <!-- the user types comma-separated scores here -->
+            <div class="field">
+              <label for="creditInput">Credit Scores (comma separated)</label>
+              <input type="text" id="creditInput" placeholder="e.g. 720, 540, 810, 430, 900, 650">
+            </div>
+            <div class="err-msg" id="loanError">error placeholder</div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="processLoanScores()">PROCESS SCORES</button>
+              <!-- loads the sample data from the assignment into the input for quick testing -->
+              <button class="btn btn-ghost" onclick="loadSampleScores()">Load Sample Data</button>
+            </div>
+          </div>
+          <!-- quick reference showing the scoring thresholds -->
+          <div style="background: rgba(78,106,156,0.07); border-radius: 8px; padding: 1rem; font-size: 0.8rem; color: var(--mid-blue);">
+            <div style="font-weight: 700; color: var(--deep-blue); margin-bottom: 0.5rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px;">SCORING RULES</div>
+            <div style="padding: 0.2rem 0;">Score &gt; 700 &nbsp;→&nbsp; <span style="color: var(--green); font-weight: 600;">Eligible for loan</span></div>
+            <div style="padding: 0.2rem 0;">Score &lt; 500 &nbsp;→&nbsp; <span style="color: var(--red); font-weight: 600;">High risk flag</span></div>
+            <div style="padding: 0.2rem 0;">Score ≥ 900 &nbsp;→&nbsp; <span style="color: var(--light-blue); font-weight: 600;">Premium tier</span></div>
+            <div style="padding: 0.2rem 0;">All scores adjusted +20</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- this whole results card is hidden until the user clicks Process Scores -->
+      <div class="card" id="loanResults" style="display:none;">
+        <div class="card-head">📈 PROCESSING RESULTS</div>
+
+        <!-- each row shows the method name on the left and the result on the right -->
+        <div class="res-row">
+          <div class="res-label">.filter(score &gt; 700)</div>
+          <div class="res-value" id="resFilter">—</div>
+        </div>
+        <div class="res-row">
+          <div class="res-label">.map(score + 20)</div>
+          <div class="res-value" id="resMap">—</div>
+        </div>
+        <div class="res-row">
+          <div class="res-label">.reduce() total risk sum</div>
+          <div class="res-value" id="resReduce">—</div>
+        </div>
+        <div class="res-row">
+          <div class="res-label">.some(score ≥ 900)</div>
+          <div class="res-value" id="resSome">—</div>
+        </div>
+        <div class="res-row">
+          <div class="res-label">.every(score &gt; 400)</div>
+          <div class="res-value" id="resEvery">—</div>
+        </div>
+        <div class="res-row">
+          <div class="res-label">.find(first &lt; 500)</div>
+          <div class="res-value" id="resFind">—</div>
+        </div>
+        <div class="res-row">
+          <div class="res-label">.findIndex(first &lt; 500)</div>
+          <div class="res-value" id="resFindIdx">—</div>
+        </div>
+
+        <!-- color-coded score chips at the bottom for a visual summary -->
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(78,106,156,0.15);">
+          <div class="label-sm mb-sm">Score Visualization</div>
+          <div id="scoreChips"></div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- SECTION 3: FRAUD DETECTION
+         covers includes(), indexOf(), slice(), splice(), forEach()
+         uses the exact array from the assignment: [1042, 8922, 3301, 5510, 7719, 9920] -->
+    <section id="section-fraud" class="section" aria-label="Fraud Detection">
+
+      <div class="section-header">
+        <div class="section-title">FRAUD DETECTION SYSTEM</div>
+        <div class="section-desc">Methods: .includes() · .indexOf() · .slice() · .splice() · .forEach()</div>
+      </div>
+
+      <div class="two-col">
+
+        <!-- left: the transaction array display and action buttons -->
+        <div>
+          <div class="card">
+            <div class="card-head">🚨 TRANSACTION ARRAY</div>
+
+            <div class="mb-sm">
+              <div class="label-sm mb-sm">Pre-loaded Transaction IDs:</div>
+              <!-- transaction chips rendered by renderFraudChips() on page load -->
+              <div id="fraudChips" style="margin-bottom:1rem;"></div>
+
+              <div class="label-sm mb-sm">Flagged Fraud ID:</div>
+              <!-- the pulsing red badge to show which ID is flagged -->
+              <span class="fraud-badge">⚠ 5510</span>
+            </div>
+
+            <div class="btn-row mt-md">
+              <!-- run audit does includes, indexOf, slice -->
+              <button class="btn btn-primary" onclick="runFraudAudit()">RUN AUDIT</button>
+              <!-- remove fraud button only appears after audit is run -->
+              <button class="btn btn-danger" id="removeFraudBtn" onclick="performFraudRemoval()" style="display:none;">REMOVE FRAUD</button>
+              <button class="btn btn-ghost" onclick="resetFraudSection()">RESET</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- right: shows each audit step as it runs -->
+        <div>
+          <div class="card">
+            <div class="card-head">🔍 STEP-BY-STEP AUDIT</div>
+            <!-- audit steps get injected here by runFraudAudit() in JS -->
+            <div id="auditPanel">
+              <div style="color: var(--mid-blue); font-size: 0.8rem; text-align: center; padding: 1.5rem 0; font-style: italic;">
+                Click "Run Audit" to begin the investigation
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- the forEach output panel, only shows after splice removes the fraud ID -->
+      <div class="card" id="clearedPanel" style="display:none;">
+        <div class="card-head" style="background: rgba(16,130,60,0.75);">✅ CLEARED TRANSACTIONS — .forEach() output</div>
+        <div id="clearedList" style="font-family: var(--font-mono); font-size: 0.8rem; line-height: 2;"></div>
+      </div>
+
+    </section>
+
+
+    <!-- SECTION 4: BANK MERGER
+         covers concat(), flat(), sort(), reverse(), join(), fill()
+         each step is a separate card with its own button -->
+    <section id="section-merger" class="section" aria-label="Bank Merger">
+
+      <div class="section-header">
+        <div class="section-title">BANK MERGER OPERATIONS</div>
+        <div class="section-desc">Methods: .concat() · .flat() · .sort() · .reverse() · .join() · .fill()</div>
+      </div>
+
+      <!-- shows both branch arrays side by side before merging -->
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head" style="background: rgba(78,164,204,0.55);">🏦 BRANCH A — NORTH DISTRICT</div>
+          <!-- rendered by renderBranches() on page load -->
+          <div id="branchAView"></div>
+        </div>
+        <div class="card">
+          <div class="card-head">🏦 BRANCH B — SOUTH DISTRICT</div>
+          <div id="branchBView"></div>
+        </div>
+      </div>
+
+      <!-- step 1: concat merges the two branch arrays -->
+      <div class="card">
+        <div class="card-head">STEP 1 — .concat() Merge Both Branches</div>
+        <p style="font-size:0.8rem; color:var(--mid-blue); margin-bottom:0.85rem;">
+          concat() creates a new array by joining branchA and branchB together without changing the originals
+        </p>
+        <div class="btn-row mb-sm">
+          <button class="btn btn-primary" onclick="runConcat()">MERGE WITH .concat()</button>
+        </div>
+        <!-- result chips appear here after clicking -->
+        <div id="concatOut" style="display:none;">
+          <div class="label-sm mt-sm mb-sm">allCustomers array:</div>
+          <div id="concatChips"></div>
+        </div>
+      </div>
+
+      <!-- step 2: flat collapses the nested messyData array -->
+      <div class="card">
+        <div class="card-head">STEP 2 — .flat() Flatten Nested Data</div>
+        <div style="font-size:0.78rem; color:var(--mid-blue); margin-bottom:0.85rem;">
+          <span class="label-sm">messyData (nested array):</span>
+          <!-- messyData rendered as text by renderBranches() on page load -->
+          <div class="output-box mt-sm" id="messyDataView"></div>
+        </div>
+        <div class="btn-row mb-sm">
+          <button class="btn btn-primary" onclick="runFlat()">FLATTEN WITH .flat()</button>
+        </div>
+        <div id="flatOut" style="display:none;">
+          <div class="label-sm mt-sm mb-sm">flatData array:</div>
+          <div id="flatChips"></div>
+        </div>
+      </div>
+
+      <!-- step 3: sort alphabetically then reverse to Z-A -->
+      <div class="card">
+        <div class="card-head">STEP 3 — .sort() then .reverse()</div>
+        <p style="font-size:0.8rem; color:var(--mid-blue); margin-bottom:0.85rem;">
+          sort() arranges the flatData alphabetically, then reverse() flips the order
+        </p>
+        <div class="btn-row mb-sm">
+          <button class="btn btn-primary" onclick="runSortReverse()">SORT + REVERSE</button>
+        </div>
+        <!-- both the sorted and reversed arrays show here -->
+        <div id="sortOut" style="display:none;">
+          <div id="sortContent"></div>
+        </div>
+      </div>
+
+      <!-- step 4: join turns the array into a single string -->
+      <div class="card">
+        <div class="card-head">STEP 4 — .join() Create Customer Banner</div>
+        <p style="font-size:0.8rem; color:var(--mid-blue); margin-bottom:0.85rem;">
+          join() turns allCustomers into one string separated by " - "
+        </p>
+        <div class="btn-row mb-sm">
+          <button class="btn btn-primary" onclick="runJoin()">JOIN WITH " - "</button>
+        </div>
+        <div id="joinOut" style="display:none;">
+          <div class="label-sm mt-sm mb-sm">Banner string result:</div>
+          <div class="banner-output" id="bannerStr"></div>
+        </div>
+      </div>
+
+      <!-- step 5: fill sets up the teller windows array
+           this one renders on page load so it's visible straight away -->
+      <div class="card">
+        <div class="card-head">STEP 5 — .fill() Initialize Teller Windows</div>
+        <p style="font-size:0.8rem; color:var(--mid-blue); margin-bottom:0.85rem;">
+          new Array(5).fill("Closed") — creates 5 slots all pre-filled with "Closed"
+        </p>
+        <div class="teller-grid" id="tellerGrid"></div>
+      </div>
+
+    </section>

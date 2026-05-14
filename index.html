@@ -53,3 +53,86 @@
   </nav>
 
   <main>
+
+  <!-- SECTION 1: SMART ATM
+         covers push(), pop(), unshift(), shift()
+         section starts active since it's the first tab -->
+    <section id="section-atm" class="section active" aria-label="Smart ATM">
+
+      <div class="section-header">
+        <div class="section-title">SMART ATM TERMINAL</div>
+        <div class="section-desc">Methods: .push() · .pop() · .unshift() · .shift() &nbsp;|&nbsp; Starting balance: $1,000.00</div>
+      </div>
+
+      <div class="two-col">
+
+        <!-- left column: the ATM controls and input -->
+        <div>
+          <div class="card">
+            <div class="card-head">⬡ ATM INTERFACE</div>
+
+            <!-- fake ATM screen showing the current balance
+                 the balance number updates live via renderATMDisplay() in JS -->
+            <div class="atm-screen">
+              <div class="atm-label">Available Balance</div>
+              <div class="atm-balance" id="atmBalance">$1,000.00</div>
+              <div class="atm-acct">ACCOUNT  ****-4721</div>
+            </div>
+
+            <!-- dropdown to choose the transaction type
+                 each option maps to a different array method -->
+            <div class="field">
+              <label for="txnType">Transaction Type</label>
+              <select id="txnType" onchange="handleTxnTypeChange()">
+                <option value="Deposit">Deposit — uses .push()</option>
+                <option value="Withdrawal">Withdrawal — uses .push()</option>
+                <option value="Fee">Maintenance Fee — uses .unshift()</option>
+                <option value="Undo">Undo Last — uses .pop() or .shift()</option>
+                <option value="RemoveOldest">Remove Oldest Record — uses .shift()</option>
+              </select>
+            </div>
+
+            <!-- amount input, gets hidden by JS when undo or remove oldest is selected -->
+            <div class="field" id="amountGroup">
+              <label for="txnAmount">Amount ($)</label>
+              <input type="number" id="txnAmount" placeholder="Enter amount..." min="0.01" step="0.01">
+            </div>
+
+            <!-- error message, hidden until something invalid is entered -->
+            <div class="err-msg" id="atmError">error placeholder</div>
+
+            <button class="btn btn-primary" onclick="processATMTransaction()" style="width:100%; padding: 0.75rem; font-size: 0.88rem; justify-content: center;">
+              PROCESS TRANSACTION
+            </button>
+
+            <!-- hint below the button that updates to show which array method will run -->
+            <div class="method-hint" id="methodHint">
+              Method: <strong style="color: var(--light-blue);">Array.push()</strong> — adds item to the end of the array
+            </div>
+          </div>
+        </div>
+
+        <!-- right column: shows the transactionHistory array contents -->
+        <div>
+          <div class="card">
+            <div class="card-head">📋 TRANSACTION HISTORY ARRAY</div>
+            <!-- the item count next to the array name updates after each transaction -->
+            <div class="arr-meta" style="color: var(--mid-blue); margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem;">
+              transactionHistory[ ] &nbsp;·&nbsp; <span id="histCount">0</span> items
+            </div>
+            <div class="history-panel">
+              <div id="histDisplay">
+                <div class="h-empty">Array is empty — make a transaction to begin</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- shows the raw JS array as text so you can see what it actually looks like -->
+          <div class="card">
+            <div class="card-head" style="background: rgba(26,63,117,0.75);">{ } RAW ARRAY OUTPUT</div>
+            <div class="output-box" id="rawArrOutput">transactionHistory = []</div>
+          </div>
+        </div>
+
+      </div>
+    </section>

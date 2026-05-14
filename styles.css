@@ -146,3 +146,845 @@ header {
 .tab-btn:hover {
   color: var(--light-blue);
   background: rgba(78, 164, 204, 0.08);
+  }
+
+/* the active tab gets a blue underline and full white text */
+.tab-btn.active {
+  color: white;
+  border-bottom-color: var(--light-blue);
+  background: rgba(78, 164, 204, 0.1);
+}
+
+/* the little numbered circle before each tab label */
+.tab-num {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* active tab number turns light blue */
+.tab-btn.active .tab-num {
+  background: var(--light-blue);
+  color: var(--navy);
+}
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* all sections start hidden, only the active one shows */
+.section {
+  display: none;
+}
+
+/* the fade-in slide-up animation when switching tabs */
+.section.active {
+  display: block;
+  animation: sectionIn 0.22s ease forwards;
+}
+
+@keyframes sectionIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* the top part of each section with the title and subtitle */
+.section-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(78, 106, 156, 0.18);
+}
+
+.section-title {
+  font-family: var(--font-brand);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  letter-spacing: 2px;
+}
+
+/* small monospace subtitle listing which array methods this section covers */
+.section-desc {
+  font-size: 0.78rem;
+  color: var(--mid-blue);
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+}
+
+/* white rounded card that wraps each group of content */
+.card {
+  background: white;
+  border: 1px solid rgba(78, 106, 156, 0.18);
+  border-radius: 12px;
+  padding: 1.4rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 42, 0.05);
+}
+
+/* dark blue header strip inside a card */
+.card-head {
+  background: var(--deep-blue);
+  color: white;
+  padding: 0.65rem 1.1rem;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* side by side layout used in most sections */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* three columns for smaller groups */
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* on small screens collapse to single column so it doesn't overflow */
+@media (max-width: 800px) {
+  .two-col, .three-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* wrapper for a label + input pair */
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--mid-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 0.35rem;
+}
+
+/* shared input styles for text, select, and textarea */
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border: 2px solid var(--mid-blue);
+  border-radius: 7px;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  color: var(--navy);
+  background: var(--off-white);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+/* border turns light blue when the user clicks into an input */
+.field input:focus,
+.field select:focus {
+  border-color: var(--light-blue);
+}
+
+/* base styles shared by all buttons */
+.btn {
+  padding: 0.6rem 1.15rem;
+  border: none;
+  border-radius: 7px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* main action button, dark blue */
+.btn-primary {
+  background: var(--deep-blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--mid-blue);
+  transform: translateY(-1px);
+}
+
+/* red button used for dangerous actions like removing fraud */
+.btn-danger {
+  background: var(--red);
+  color: white;
+}
+
+.btn-danger:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* lighter secondary button for less important actions like reset or load sample */
+.btn-ghost {
+  background: rgba(78, 106, 156, 0.12);
+  color: var(--deep-blue);
+}
+
+.btn-ghost:hover {
+  background: rgba(78, 164, 204, 0.2);
+  color: var(--light-blue);
+}
+
+/* error messages, hidden by default until something goes wrong */
+.err-msg {
+  color: var(--red);
+  font-size: 0.77rem;
+  font-weight: 500;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+/* the grey box used to display array contents or code output */
+.output-box {
+  background: var(--off-white);
+  border: 1px solid rgba(78, 106, 156, 0.2);
+  border-radius: 7px;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  min-height: 52px;
+  color: var(--navy);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* row of buttons lined up horizontally */
+.btn-row {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+/* the dark navy ATM screen that shows the balance */
+.atm-screen {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 1.75rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* decorative colored line along the top edge of the ATM screen */
+.atm-screen::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--light-blue), var(--green), var(--light-blue));
+}
+
+.atm-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--mid-blue);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem;
+}
+
+/* the big dollar amount number */
+.atm-balance {
+  font-family: var(--font-brand);
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: white;
+  transition: color 0.4s ease;
+}
+
+/* these flash classes get added and removed by JS to animate the balance color */
+.atm-balance.flash-up   { color: var(--green); }
+.atm-balance.flash-down { color: var(--red); }
+.atm-balance.flash-fee  { color: var(--amber); }
+
+/* faint account number below the balance */
+.atm-acct {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.25);
+  margin-top: 0.45rem;
+  letter-spacing: 2px;
+}
+
+/* the blue box below the dropdown that shows which array method will run */
+.method-hint {
+  background: rgba(78, 106, 156, 0.1);
+  border: 1px solid rgba(78, 106, 156, 0.25);
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.76rem;
+  color: var(--mid-blue);
+  font-family: var(--font-mono);
+  margin-top: 0.75rem;
+}
+
+/* dark panel that displays the transaction history array */
+.history-panel {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 0.9rem;
+  max-height: 290px;
+  overflow-y: auto;
+}
+
+/* custom thin scrollbar inside the history panel */
+.history-panel::-webkit-scrollbar { width: 4px; }
+.history-panel::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); }
+.history-panel::-webkit-scrollbar-thumb { background: var(--mid-blue); border-radius: 2px; }
+
+/* small label showing array name and item count */
+.arr-meta {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 0.6rem;
+}
+
+/* each row in the transaction history list */
+.h-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.38rem 0.65rem;
+  border-radius: 5px;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* green left border for deposits */
+.h-row.deposit {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--green);
+  border-left: 3px solid var(--green);
+}
+
+/* red left border for withdrawals */
+.h-row.withdrawal {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--red);
+  border-left: 3px solid var(--red);
+}
+
+/* amber left border for fees */
+.h-row.fee {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--amber);
+  border-left: 3px solid var(--amber);
+}
+
+/* placeholder text when the history array is empty */
+.h-empty {
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 1.2rem 0;
+  font-style: italic;
+}
+
+
+/* each result row in the loan results table */
+.res-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid rgba(78, 106, 156, 0.12);
+  gap: 1rem;
+}
+
+.res-row:last-child {
+  border-bottom: none;
+}
+
+/* left side label showing which array method was used */
+.res-label {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--mid-blue);
+  flex-shrink: 0;
+  min-width: 200px;
+}
+
+/* right side value showing the result */
+.res-value {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--navy);
+  text-align: right;
+  word-break: break-all;
+}
+
+/* colors for true/false boolean results */
+.val-true  { color: var(--green); font-weight: 600; }
+.val-false { color: var(--red); font-weight: 600; }
+
+/* the little score chips shown for each credit score */
+.chip {
+  display: inline-block;
+  padding: 0.22rem 0.55rem;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  margin: 0.15rem;
+}
+
+/* green chip for scores above 700 */
+.chip-eligible {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* grey chip for scores in the middle */
+.chip-normal {
+  background: rgba(78, 106, 156, 0.12);
+  color: var(--mid-blue);
+  border: 1px solid rgba(78, 106, 156, 0.25);
+}
+
+/* red chip for scores below 500, high risk */
+.chip-risk {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+
+/* the red pulsing badge that shows the flagged fraud ID */
+.fraud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  animation: blink-fraud 2s infinite;
+}
+
+/* the pulse animation — fades in and out to draw attention */
+@keyframes blink-fraud {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.65; }
+}
+
+/* transaction ID chips in the array display */
+.tid-chip {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin: 0.2rem;
+  transition: all 0.3s ease;
+}
+
+/* normal transactions show in blue */
+.tid-normal {
+  background: rgba(78, 106, 156, 0.12);
+  color: var(--deep-blue);
+  border: 1px solid rgba(78, 106, 156, 0.3);
+}
+
+/* the fraud chip pulses red so it's obvious */
+.tid-fraud {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  animation: blink-fraud 1.2s infinite;
+}
+
+/* after splice removes the fraud ID, remaining chips turn green */
+.tid-cleared {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* each step in the audit results, left border color changes per status */
+.audit-step {
+  background: var(--off-white);
+  border-left: 3px solid var(--mid-blue);
+  border-radius: 0 6px 6px 0;
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.8rem;
+}
+
+/* amber border for warning steps like indexOf */
+.audit-step.step-warn {
+  border-left-color: var(--amber);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+/* green border for successful steps */
+.audit-step.step-ok {
+  border-left-color: var(--green);
+  background: rgba(34, 197, 94, 0.05);
+}
+
+/* red border for steps that flagged a problem */
+.audit-step.step-err {
+  border-left-color: var(--red);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+/* the method name shown in monospace at the top of each audit step */
+.step-method {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--deep-blue);
+  font-size: 0.77rem;
+  margin-bottom: 0.2rem;
+}
+
+.step-result {
+  color: var(--navy);
+  font-size: 0.8rem;
+}
+
+
+/* customer name pills used in the merger section */
+.name-chip {
+  display: inline-block;
+  padding: 0.22rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin: 0.18rem;
+}
+
+/* branch A customers use light blue */
+.nc-a {
+  background: rgba(78, 164, 204, 0.15);
+  color: #1A3F75;
+  border: 1px solid rgba(78, 164, 204, 0.4);
+}
+
+/* branch B customers use deep blue tones */
+.nc-b {
+  background: rgba(26, 63, 117, 0.12);
+  color: var(--deep-blue);
+  border: 1px solid rgba(78, 106, 156, 0.35);
+}
+
+/* the dark box that shows the join() banner string output */
+.banner-output {
+  background: var(--deep-blue);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--light-blue);
+  word-break: break-all;
+  line-height: 1.75;
+}
+
+/* 5 teller windows in a row, collapses to 3 on small screens */
+.teller-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 700px) {
+  .teller-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* individual teller window card */
+.teller-card {
+  background: var(--deep-blue);
+  border-radius: 8px;
+  padding: 1.1rem 0.5rem;
+  text-align: center;
+}
+
+.teller-num {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--mid-blue);
+  letter-spacing: 1px;
+  margin-bottom: 0.35rem;
+}
+
+/* "Closed" status is amber because it's a warning state, not an error */
+.teller-status {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+
+/* the access granted / denied result panel, hidden until validate is clicked */
+.access-result {
+  text-align: center;
+  padding: 1.4rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  display: none;
+}
+
+/* green tint for access granted */
+.access-result.granted {
+  background: rgba(34, 197, 94, 0.08);
+  border: 2px solid rgba(34, 197, 94, 0.35);
+}
+
+/* red tint for access denied */
+.access-result.denied {
+  background: rgba(239, 68, 68, 0.08);
+  border: 2px solid rgba(239, 68, 68, 0.35);
+}
+
+.access-title {
+  font-family: var(--font-brand);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.granted .access-title { color: var(--green); }
+.denied  .access-title { color: var(--red); }
+
+.access-reason {
+  font-size: 0.78rem;
+  margin-top: 0.45rem;
+}
+
+.granted .access-reason { color: var(--green); }
+.denied  .access-reason { color: var(--red); }
+
+/* the thin bar that fills up as the password gets stronger */
+.strength-track {
+  height: 4px;
+  background: rgba(78, 106, 156, 0.18);
+  border-radius: 2px;
+  margin-top: 0.45rem;
+  overflow: hidden;
+}
+
+/* the colored fill inside the track, width changes via JS */
+.strength-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.28s ease, background-color 0.28s ease;
+}
+
+/* label below the bar that says "Weak", "Getting there..." etc */
+.strength-label {
+  font-size: 0.7rem;
+  color: var(--mid-blue);
+  margin-top: 0.25rem;
+}
+
+/* the checklist box showing the 3 password requirements */
+.req-list {
+  background: var(--off-white);
+  border-radius: 7px;
+  padding: 0.75rem 0.9rem;
+  margin: 0.9rem 0;
+}
+
+.req-list-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.45rem;
+}
+
+/* each requirement line, turns green when it passes */
+.req-item {
+  font-size: 0.78rem;
+  color: var(--mid-blue);
+  padding: 0.2rem 0;
+  transition: color 0.15s;
+  font-family: var(--font-mono);
+}
+
+.req-item.pass { color: var(--green); }
+.req-item.fail { color: var(--red); }
+
+/* each row in the yearly report output */
+.report-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.42rem 0.75rem;
+  border-radius: 5px;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* regular years have a very faint blue tint */
+.report-row.yr-normal {
+  background: rgba(78, 106, 156, 0.06);
+  color: var(--navy);
+}
+
+/* leap years get an amber highlight and left border */
+.report-row.yr-leap {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--amber);
+  border-left: 3px solid var(--amber);
+}
+
+/* anniversary years get a light blue highlight */
+.report-row.yr-anniversary {
+  background: rgba(78, 164, 204, 0.1);
+  color: #1A3F75;
+  border-left: 3px solid var(--light-blue);
+}
+
+/* when a year is both a leap year and an anniversary, blend both colors */
+.report-row.yr-both {
+  background: linear-gradient(90deg, rgba(245,158,11,0.1), rgba(78,164,204,0.1));
+  border-left: 3px solid var(--amber);
+}
+
+/* the LEAP and anniversary badge tags on special year rows */
+.yr-tag {
+  display: inline-block;
+  padding: 0.08rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.yr-tag-leap         { background: var(--amber);      color: white; }
+.yr-tag-anniversary  { background: var(--light-blue); color: white; }
+
+/* scrollable container for the report so it doesn't get too long */
+.report-scroll {
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.report-scroll::-webkit-scrollbar { width: 4px; }
+.report-scroll::-webkit-scrollbar-track { background: var(--off-white); }
+.report-scroll::-webkit-scrollbar-thumb { background: var(--mid-blue); border-radius: 2px; }
+
+/* the show/hide password toggle sits inside the input field on the right */
+.pw-toggle {
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--mid-blue);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* the wrapper that makes position: absolute work inside the password field */
+.pw-wrap {
+  position: relative;
+}
+
+/* green APPROVED badge on eligible credit scores */
+.badge-approved {
+  display: inline-block;
+  padding: 0.08rem 0.4rem;
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+}
+
+/* red HIGH RISK badge on scores below 500 */
+.badge-rejected {
+  display: inline-block;
+  padding: 0.08rem 0.4rem;
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+}
+
+/* dark footer at the very bottom of the page */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: 1.4rem 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+/* quick spacing utility classes i'm using in a few places */
+.mt-sm { margin-top: 0.5rem; }
+.mt-md { margin-top: 1rem; }
+.mt-lg { margin-top: 1.5rem; }
+.mb-sm { margin-bottom: 0.5rem; }
+.label-sm {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--mid-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

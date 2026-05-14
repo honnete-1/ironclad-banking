@@ -1,0 +1,148 @@
+/* storing all the colors and fonts as variables so i don't have to
+   type the same hex codes over and over throughout the file */
+:root {
+  --navy:      #00002A;
+  --deep-blue: #1A3F75;
+  --mid-blue:  #4E6A9C;
+  --light-blue:#4EA4CC;
+  --off-white: #F8FAFC;
+  --green:     #22C55E;
+  --red:       #EF4444;
+  --amber:     #F59E0B;
+  --font-ui:    'IBM Plex Sans', sans-serif;
+  --font-mono:  'IBM Plex Mono', monospace;
+  --font-brand: 'Orbitron', sans-serif;
+}
+
+/* browsers have their own default margins and padding that break layouts
+   this clears all of that so we start from scratch */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* base page styles, off-white background feels cleaner than pure white */
+body {
+  background-color: var(--off-white);
+  font-family: var(--font-ui);
+  color: var(--navy);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* sticky header so the logo stays visible when scrolling */
+header {
+  background-color: var(--navy);
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  border-bottom: 1px solid rgba(78, 106, 156, 0.3);
+}
+
+/* centering the header content and pushing logo left, badge right */
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* the little IB square icon on the left of the logo */
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--light-blue), var(--mid-blue));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-brand);
+  font-weight: 900;
+  color: white;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: var(--font-brand);
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 3px;
+}
+
+.brand-sub {
+  font-size: 0.62rem;
+  color: var(--mid-blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* the small badge on the top right saying what project this is */
+.header-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--mid-blue);
+  border: 1px solid rgba(78, 106, 156, 0.4);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+/* tab bar sticks below the header when you scroll */
+.tab-nav {
+  background-color: var(--deep-blue);
+  border-bottom: 2px solid rgba(78, 106, 156, 0.4);
+  position: sticky;
+  top: 67px;
+  z-index: 100;
+}
+
+.tab-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+/* hides the scrollbar on the tab row on webkit browsers */
+.tab-nav-inner::-webkit-scrollbar {
+  display: none;
+}
+
+/* each individual tab button */
+.tab-btn {
+  padding: 0.9rem 1.4rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: rgba(255,255,255,0.55);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-btn:hover {
+  color: var(--light-blue);
+  background: rgba(78, 164, 204, 0.08);

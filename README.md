@@ -31,7 +31,7 @@ IronClad is a fictional banking system built entirely in vanilla JavaScript, HTM
 
 The assignment asked us to build functional modules for a fictional bank called **IronClad**, applying JavaScript basics including loops, conditionals, and every major array method. Instead of just writing functions in isolation, I built a fully styled interactive web app that lets you actually *use* each method and see the results in real time.
 
-Each of the five tabs corresponds to one question in the assignment. You can interact with every feature — make ATM transactions, process loan applications, run fraud audits, merge branch databases, and validate passwords — and watch the underlying array operations happen live on screen.
+Each of the five tabs corresponds to one question in the assignment. You can interact with every feature, make ATM transactions, process loan applications, run fraud audits, merge branch databases, and validate passwords, and watch the underlying array operations happen live on screen.
 
 ---
 
@@ -204,5 +204,5 @@ The original submission had a few places where the implementation went beyond (o
 
 ## Author
 
-**Honnete Nishimwe** — CS101 Assignment  
+**Honnete Nishimwe** 
 GitHub: [@honnete-1](https://github.com/honnete-1)

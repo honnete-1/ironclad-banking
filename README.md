@@ -4,7 +4,6 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-No_Framework-green?style=flat)
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat)
 
 IronClad is a fictional banking system built entirely in vanilla JavaScript, HTML, and CSS. It was created as a CS101 assignment to demonstrate practical use of JavaScript array methods, string operations, loops, and conditional logic — all brought to life through a real, interactive banking UI with five functional modules.
 

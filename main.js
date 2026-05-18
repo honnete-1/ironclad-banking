@@ -16,7 +16,7 @@ function switchTab(name) {
 }
 
 
-// starting balance is $1000 as the assignment says
+// starting balance is $1000 
 let balance = 1000;
 
 // this is the main array we do all the push/pop/shift/unshift operations on
